@@ -1,3 +1,4 @@
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -8,6 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Shape Tracker",
       template: "./src/index.html",
