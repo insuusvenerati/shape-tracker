@@ -24,6 +24,12 @@ window.addEventListener("load", function () {
   const colorSchemeToggle = document.querySelector("#dark-mode");
   const themeIcon = document.querySelector("#theme-icon");
   const theme = localStorage.getItem("theme");
+  const loadingScreen = document.querySelector("#loading-screen");
+
+  setTimeout(() => {
+    loadingScreen.style.opacity = "0";
+    loadingScreen.style.visibility = "hidden";
+  }, 500);
 
   if (theme) {
     htmlElement.setAttribute("data-theme", theme);
