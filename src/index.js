@@ -1,7 +1,9 @@
 import Triangle from "./triangle";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "@picocss/pico/css/pico.min.css";
 import "./css/styles.css";
+// import "bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./css/styles.css";
 
 function handleTriangleForm(event) {
   event.preventDefault();
@@ -18,4 +20,26 @@ function handleTriangleForm(event) {
 
 window.addEventListener("load", function () {
   document.querySelector("#triangle-checker-form").addEventListener("submit", handleTriangleForm);
+  const htmlElement = document.querySelector("html");
+  const colorSchemeToggle = document.querySelector("#dark-mode");
+  const themeIcon = document.querySelector("#theme-icon");
+  const theme = localStorage.getItem("theme");
+
+  if (theme) {
+    htmlElement.setAttribute("data-theme", theme);
+    colorSchemeToggle.checked = theme === "dark";
+    themeIcon.innerText = theme === "dark" ? "Dark Mode 🌛" : "Light Mode 🌞";
+  }
+
+  colorSchemeToggle.addEventListener("change", function (event) {
+    if (event.target.checked) {
+      htmlElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      themeIcon.innerText = "Dark Mode 🌙";
+    } else {
+      htmlElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+      themeIcon.innerText = "Light Mode 🌞";
+    }
+  });
 });
